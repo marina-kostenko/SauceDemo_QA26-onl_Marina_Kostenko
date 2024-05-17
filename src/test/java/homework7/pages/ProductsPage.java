@@ -30,7 +30,7 @@ public class ProductsPage extends BasePage {
         this.getProductCardByName(productName).findElement(ADD_TO_CART_BUTTON).click();
     }
 
-    public boolean isRemoveButtonIsDisplayed(String productName)
+    public boolean isRemoveButtonDisplayed(String productName)
     {
         return driver.findElement(REMOVE_BUTTON).isDisplayed();
     }

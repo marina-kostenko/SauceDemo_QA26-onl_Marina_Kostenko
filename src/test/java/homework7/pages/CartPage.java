@@ -52,7 +52,7 @@ public class CartPage extends BasePage {
         this.getProductCardInCartByName(productName).findElement(REMOVE_BUTTON).click();
     }
 
-    public boolean isRemoveButtonNotDisplayed(String productName)
+    public boolean isRemoveButtonDisplayed(String productName)
     {
         try {
             driver.findElement(REMOVE_BUTTON);
