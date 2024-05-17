@@ -22,5 +22,4 @@ public class CheckoutCompletePage extends BasePage {
     {
         driver.findElement(BACK_HOME_BUTTON).click();
     }
-
 }

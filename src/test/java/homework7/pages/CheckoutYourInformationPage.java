@@ -18,7 +18,6 @@ public class CheckoutYourInformationPage extends BasePage {
     public boolean isFirstNameFieldDisplayed()
     {
         return driver.findElement(FIRST_NAME_FIELD).isDisplayed();
-
     }
 
     public void setFirstNameField(String firstName)
@@ -40,5 +39,4 @@ public class CheckoutYourInformationPage extends BasePage {
     {
         driver.findElement(CONTINUE_BUTTON).click();
     }
-
 }

@@ -22,12 +22,10 @@ public class CheckoutOverviewPage extends BasePage {
     public void clickFinishButton()
     {
         driver.findElement(FINISH_BUTTON).click();
-
     }
 
     public void clickCancelButton()
     {
         driver.findElement(CANCEL_BUTTON).click();
     }
-
 }

@@ -1,6 +1,7 @@
 package homework7.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -20,7 +21,7 @@ public class CartPage extends BasePage {
         super(driver);
     }
 
-    public WebElement getProductCardInCartByName(String productName)
+    private WebElement getProductCardInCartByName(String productName)
     {
         return driver.findElement(By.xpath(String.format(ITEM_CONTAINER_IN_CART, productName)));
     }
@@ -33,7 +34,6 @@ public class CartPage extends BasePage {
     public String getProductPriceInCart(String productName)
     {
         return this.getProductCardInCartByName(productName).findElement(ITEM_PRICE_IN_CART).getText();
-
     }
 
     public String getProductDescriptionInCart(String productName)
@@ -52,26 +52,18 @@ public class CartPage extends BasePage {
         this.getProductCardInCartByName(productName).findElement(REMOVE_BUTTON).click();
     }
 
-    public boolean isRemoveButtonDisplayed(String productName)
+    public boolean isRemoveButtonNotDisplayed(String productName)
     {
         try {
-            if (driver.findElement(REMOVE_BUTTON) == null)
-                return false;
-
-            else {
-                return true;
-            }
-        } catch (Exception e) {
+            driver.findElement(REMOVE_BUTTON);
+            return true;
+        } catch (NoSuchElementException e) {
             return false;
         }
-
-
     }
 
     public void clickCheckoutButton()
     {
         driver.findElement(CHECKOUT_BUTTON).click();
     }
-
-
 }

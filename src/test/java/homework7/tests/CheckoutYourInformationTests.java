@@ -18,6 +18,5 @@ public class CheckoutYourInformationTests extends BaseTest {
         checkoutYourInformationPage.setZipPostalCodeField("1234");
         checkoutYourInformationPage.clickContinueButton();
         Assert.assertTrue(checkoutOverviewPage.isPageTitleDisplayed());
-
     }
 }

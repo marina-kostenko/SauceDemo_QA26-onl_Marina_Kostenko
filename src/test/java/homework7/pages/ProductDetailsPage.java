@@ -41,5 +41,4 @@ public class ProductDetailsPage extends BasePage {
     {
         return this.driver.findElement(ITEM_PRICE).getText();
     }
-
 }

@@ -18,23 +18,7 @@ public class CheckoutCompleteTests extends BaseTest {
         checkoutYourInformationPage.clickContinueButton();
         checkoutOverviewPage.clickFinishButton();
         Assert.assertTrue(checkoutCompletePage.isCompleteOrderMessageDisplayed());
-
-    }
-
-    @Test
-    public void isBackHomeButtonWorking()
-    {
-        loginPage.login("standard_user", "secret_sauce");
-        String productName = "Sauce Labs Backpack";
-        productsPage.clickAddToCartButton(productName);
-        productsPage.clickShoppingCartButton();
-        cartPage.clickCheckoutButton();
-        checkoutYourInformationPage.setFirstNameField("Ivan");
-        checkoutYourInformationPage.setLastNameField("Ivanov");
-        checkoutYourInformationPage.setZipPostalCodeField("1234");
-        checkoutYourInformationPage.clickContinueButton();
-        checkoutOverviewPage.clickFinishButton();
         checkoutCompletePage.clickBackHomeButton();
-        Assert.assertTrue(productsPage.isSortContainerDisplayed());
+        Assert.assertTrue(productsPage.isSortContainerDisplayed(), "back home button doesn't work");
     }
 }

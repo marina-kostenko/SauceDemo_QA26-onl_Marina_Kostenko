@@ -25,7 +25,6 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("https://www.saucedemo.com/");
-
         this.loginPage = new LoginPage(driver);
         this.productsPage = new ProductsPage(driver);
         this.cartPage = new CartPage(driver);
@@ -33,7 +32,6 @@ public class BaseTest {
         this.checkoutOverviewPage = new CheckoutOverviewPage(driver);
         this.checkoutCompletePage = new CheckoutCompletePage(driver);
         this.productDetailsPage = new ProductDetailsPage(driver);
-
     }
 
     @AfterMethod(alwaysRun = true)

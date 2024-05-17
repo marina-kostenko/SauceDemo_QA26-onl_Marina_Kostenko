@@ -13,10 +13,10 @@ public class ProductsPage extends BasePage {
     private final static By ITEM_DESCRIPTION = By.className("inventory_item_desc");
     private final static String ITEM_CONTAINER = "//div[text()='%s']/ancestor::div[@class='inventory_item']";
     private final static By SORT_CONTAINER = By.className("product_sort_container");
+    private final static By REMOVE_BUTTON = By.cssSelector("button[id^=remove-]");
 
     public ProductsPage(WebDriver driver)
     {
-
         super(driver);
     }
 
@@ -28,8 +28,13 @@ public class ProductsPage extends BasePage {
     public void clickAddToCartButton(String productName)
     {
         this.getProductCardByName(productName).findElement(ADD_TO_CART_BUTTON).click();
-
     }
+
+    public boolean isRemoveButtonIsDisplayed(String productName)
+    {
+        return driver.findElement(REMOVE_BUTTON).isDisplayed();
+    }
+
 
     public void clickItemName(String productName)
     {
@@ -39,9 +44,7 @@ public class ProductsPage extends BasePage {
     public void clickShoppingCartButton()
     {
         driver.findElement(SHOPPING_CART).click();
-
     }
-
 
     public String getProductPrice(String productName)
     {
