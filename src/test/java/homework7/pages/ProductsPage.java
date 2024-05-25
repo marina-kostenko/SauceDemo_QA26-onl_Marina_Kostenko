@@ -1,6 +1,7 @@
 package homework7.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -22,7 +23,12 @@ public class ProductsPage extends BasePage {
 
     public boolean isShoppingCartDisplayed()
     {
-        return driver.findElement(SHOPPING_CART).isDisplayed();
+        try {
+            driver.findElement(SHOPPING_CART);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     public void clickAddToCartButton(String productName)

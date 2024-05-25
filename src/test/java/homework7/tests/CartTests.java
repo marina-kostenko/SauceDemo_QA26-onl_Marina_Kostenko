@@ -5,10 +5,9 @@ import org.testng.annotations.Test;
 
 public class CartTests extends BaseTest {
 
-    @Test
+    @Test(groups = "need account", description = "this test checks buttons Remove, Continue Shopping, Checkout  and item's information in the cart")
     public void buttonsAndProductInformationInCartTest()
     {
-        loginPage.login("standard_user", "secret_sauce");
         String productName = "Sauce Labs Backpack";
         productsPage.clickAddToCartButton(productName);
         productsPage.clickShoppingCartButton();
