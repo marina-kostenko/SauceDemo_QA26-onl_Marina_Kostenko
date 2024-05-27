@@ -21,7 +21,7 @@ public class ProductsPage extends BasePage {
         super(driver);
     }
 
-    public boolean isShoppingCartDisplayed()
+    public boolean isShoppingCartPresent()
     {
         try {
             driver.findElement(SHOPPING_CART);
@@ -62,7 +62,7 @@ public class ProductsPage extends BasePage {
         return this.getProductCardByName(productName).findElement(ITEM_DESCRIPTION).getText();
     }
 
-    public boolean isSortContainerDisplayed()
+    public boolean isSortContainerPresent()
     {
         return driver.findElement(SORT_CONTAINER).isDisplayed();
     }

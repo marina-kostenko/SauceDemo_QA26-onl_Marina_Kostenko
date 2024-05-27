@@ -1,7 +1,6 @@
 package homework7.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
@@ -25,13 +24,9 @@ public class LoginPage extends BasePage {
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
     }
 
-    public void getExpectedMessage(String expectedMessage)
+    public String getExpectedMessage()
     {
-        try {
-            driver.findElement(EXPECTED_MESSAGE).getText();
-        }
-        catch (NoSuchElementException e) {
-        }
+        return driver.findElement(EXPECTED_MESSAGE).getText();
     }
 
     public void clickLoginButton()
@@ -39,11 +34,10 @@ public class LoginPage extends BasePage {
         driver.findElement(LOGIN_BUTTON).click();
     }
 
-    public void login(String email, String password, String expectedMessage)
+    public void login(String email, String password)
     {
         setEmailValue(email);
         setPasswordValue(password);
         clickLoginButton();
-        getExpectedMessage(expectedMessage);
     }
 }

@@ -24,12 +24,6 @@ public class BaseTest {
         this.driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-    }
-
-    @BeforeMethod(alwaysRun = true)
-    public void setUp()
-    {
-        driver.get("https://www.saucedemo.com/");
         this.loginPage = new LoginPage(driver);
         this.productsPage = new ProductsPage(driver);
         this.cartPage = new CartPage(driver);
@@ -39,10 +33,16 @@ public class BaseTest {
         this.productDetailsPage = new ProductDetailsPage(driver);
     }
 
+    @BeforeMethod(alwaysRun = true)
+    public void setUp()
+    {
+        driver.get("https://www.saucedemo.com/");
+    }
+
     @BeforeMethod(onlyForGroups = "need account", dependsOnMethods = "setUp")
     public void setAccount()
     {
-        loginPage.login("standard_user", "secret_sauce", "");
+        loginPage.login("standard_user", "secret_sauce");
     }
 
     @AfterMethod(alwaysRun = true)

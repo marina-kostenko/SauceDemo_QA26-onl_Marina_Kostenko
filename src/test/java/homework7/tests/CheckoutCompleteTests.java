@@ -18,6 +18,6 @@ public class CheckoutCompleteTests extends BaseTest {
         checkoutOverviewPage.clickFinishButton();
         Assert.assertTrue(checkoutCompletePage.isCompleteOrderMessageDisplayed());
         checkoutCompletePage.clickBackHomeButton();
-        Assert.assertTrue(productsPage.isSortContainerDisplayed(), "back home button doesn't work");
+        Assert.assertTrue(productsPage.isSortContainerPresent(), "back home button doesn't work");
     }
 }

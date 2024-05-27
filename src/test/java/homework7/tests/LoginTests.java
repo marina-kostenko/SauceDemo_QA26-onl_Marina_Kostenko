@@ -8,15 +8,16 @@ public class LoginTests extends BaseTest {
     @Test(description = "this test check that we use valid email and password and authorized successfully ")
     public void positiveLoginTest()
     {
-        loginPage.login("standard_user", "secret_sauce", "");
-        Assert.assertTrue(productsPage.isShoppingCartDisplayed());
+        loginPage.login("standard_user", "secret_sauce");
+        Assert.assertTrue(productsPage.isShoppingCartPresent());
     }
 
     @Test(dataProvider = "loginTest", retryAnalyzer = Retry.class)
     public void negativeLoginTest(String email, String password, String expectedMessage)
     {
-        loginPage.login(email, password, expectedMessage);
-        Assert.assertTrue(productsPage.isShoppingCartDisplayed());
+        loginPage.login(email, password);
+        Assert.assertEquals(loginPage.getExpectedMessage(), expectedMessage);
+        Assert.assertFalse(productsPage.isShoppingCartPresent());
     }
 
     @DataProvider(name = "loginTest")

@@ -17,6 +17,6 @@ public class CheckOverviewTests extends BaseTest {
         checkoutYourInformationPage.setZipPostalCodeField("1234");
         checkoutYourInformationPage.clickContinueButton();
         checkoutOverviewPage.clickCancelButton();
-        Assert.assertTrue(productsPage.isSortContainerDisplayed());
+        Assert.assertTrue(productsPage.isSortContainerPresent());
     }
 }

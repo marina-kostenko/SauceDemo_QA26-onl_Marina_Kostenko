@@ -14,7 +14,7 @@ public class CartTests extends BaseTest {
         cartPage.clickRemoveButton(productName);
         Assert.assertFalse(cartPage.isRemoveButtonDisplayed(productName), "remove button doesn't work");
         cartPage.clickContinueShoppingButton();
-        Assert.assertTrue(productsPage.isSortContainerDisplayed(), "continue shopping button doesn't work");
+        Assert.assertTrue(productsPage.isSortContainerPresent(), "continue shopping button doesn't work");
         productsPage.clickAddToCartButton(productName);
         productsPage.clickShoppingCartButton();
         Assert.assertEquals(cartPage.getProductPriceInCart(productName), "$29.99", "price is incorrect");
