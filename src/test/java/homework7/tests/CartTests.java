@@ -5,17 +5,16 @@ import org.testng.annotations.Test;
 
 public class CartTests extends BaseTest {
 
-    @Test
+    @Test(groups = "need account", description = "this test checks buttons Remove, Continue Shopping, Checkout  and item's information in the cart")
     public void buttonsAndProductInformationInCartTest()
     {
-        loginPage.login("standard_user", "secret_sauce");
         String productName = "Sauce Labs Backpack";
         productsPage.clickAddToCartButton(productName);
         productsPage.clickShoppingCartButton();
         cartPage.clickRemoveButton(productName);
         Assert.assertFalse(cartPage.isRemoveButtonDisplayed(productName), "remove button doesn't work");
         cartPage.clickContinueShoppingButton();
-        Assert.assertTrue(productsPage.isSortContainerDisplayed(), "continue shopping button doesn't work");
+        Assert.assertTrue(productsPage.isSortContainerPresent(), "continue shopping button doesn't work");
         productsPage.clickAddToCartButton(productName);
         productsPage.clickShoppingCartButton();
         Assert.assertEquals(cartPage.getProductPriceInCart(productName), "$29.99", "price is incorrect");

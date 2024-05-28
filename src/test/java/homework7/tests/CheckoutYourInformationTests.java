@@ -5,10 +5,9 @@ import org.testng.annotations.Test;
 
 public class CheckoutYourInformationTests extends BaseTest {
 
-    @Test
+    @Test(groups = {"need account"}, description = "this test checks valid filling fields on Checkout your Information page")
     public void fillingCheckoutInformationTest()
     {
-        loginPage.login("standard_user", "secret_sauce");
         String productName = "Sauce Labs Backpack";
         productsPage.clickAddToCartButton(productName);
         productsPage.clickShoppingCartButton();

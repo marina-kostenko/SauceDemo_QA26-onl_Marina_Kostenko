@@ -1,6 +1,7 @@
 package homework7.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -20,9 +21,14 @@ public class ProductsPage extends BasePage {
         super(driver);
     }
 
-    public boolean isShoppingCartDisplayed()
+    public boolean isShoppingCartPresent()
     {
-        return driver.findElement(SHOPPING_CART).isDisplayed();
+        try {
+            driver.findElement(SHOPPING_CART);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     public void clickAddToCartButton(String productName)
@@ -56,7 +62,7 @@ public class ProductsPage extends BasePage {
         return this.getProductCardByName(productName).findElement(ITEM_DESCRIPTION).getText();
     }
 
-    public boolean isSortContainerDisplayed()
+    public boolean isSortContainerPresent()
     {
         return driver.findElement(SORT_CONTAINER).isDisplayed();
     }

@@ -7,6 +7,7 @@ public class LoginPage extends BasePage {
     private static final By EMAIL_INPUT = By.id("user-name");
     private static final By PASSWORD_INPUT = By.id("password");
     private static final By LOGIN_BUTTON = By.id("login-button");
+    private static final By EXPECTED_MESSAGE = By.cssSelector("h3[data-test=error]");
 
     public LoginPage(WebDriver driver)
     {
@@ -21,6 +22,11 @@ public class LoginPage extends BasePage {
     public void setPasswordValue(String password)
     {
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
+    }
+
+    public String getExpectedMessage()
+    {
+        return driver.findElement(EXPECTED_MESSAGE).getText();
     }
 
     public void clickLoginButton()

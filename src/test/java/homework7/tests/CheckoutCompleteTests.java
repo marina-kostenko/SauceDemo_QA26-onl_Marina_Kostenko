@@ -4,10 +4,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CheckoutCompleteTests extends BaseTest {
-    @Test
+    @Test(groups = {"need account"}, description = "this test checks successful making order and BackHome button on complete page")
     public void checkoutCompleteTest()
     {
-        loginPage.login("standard_user", "secret_sauce");
         String productName = "Sauce Labs Backpack";
         productsPage.clickAddToCartButton(productName);
         productsPage.clickShoppingCartButton();
@@ -19,6 +18,6 @@ public class CheckoutCompleteTests extends BaseTest {
         checkoutOverviewPage.clickFinishButton();
         Assert.assertTrue(checkoutCompletePage.isCompleteOrderMessageDisplayed());
         checkoutCompletePage.clickBackHomeButton();
-        Assert.assertTrue(productsPage.isSortContainerDisplayed(), "back home button doesn't work");
+        Assert.assertTrue(productsPage.isSortContainerPresent(), "back home button doesn't work");
     }
 }
