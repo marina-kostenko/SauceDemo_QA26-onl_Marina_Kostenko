@@ -1,11 +1,10 @@
 package homework7.tests;
 
 import homework7.pages.*;
+import homework7.utils.DriverFactory;
+import homework7.utils.TestListener;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
-
-import java.time.Duration;
 
 @Listeners({TestListener.class})
 public class BaseTest {
@@ -18,12 +17,12 @@ public class BaseTest {
     protected CheckoutCompletePage checkoutCompletePage;
     protected ProductDetailsPage productDetailsPage;
 
-    @BeforeClass(alwaysRun = true)
-    public void setUpClass()
+    @BeforeMethod(alwaysRun = true)
+    @Parameters({"browserName"})
+    public void setUp(@Optional("chrome") String browser) throws Exception
     {
-        this.driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver = DriverFactory.getDriver(browser);
+        driver.get("https://www.saucedemo.com/");
         this.loginPage = new LoginPage(driver);
         this.productsPage = new ProductsPage(driver);
         this.cartPage = new CartPage(driver);
@@ -33,25 +32,13 @@ public class BaseTest {
         this.productDetailsPage = new ProductDetailsPage(driver);
     }
 
-    @BeforeMethod(alwaysRun = true)
-    public void setUp()
-    {
-        driver.get("https://www.saucedemo.com/");
-    }
-
-    @BeforeMethod(onlyForGroups = "need account", dependsOnMethods = "setUp")
+    @BeforeMethod(alwaysRun = true, onlyForGroups = {"need account"}, dependsOnMethods= "setUp")
     public void setAccount()
     {
         loginPage.login("standard_user", "secret_sauce");
     }
 
     @AfterMethod(alwaysRun = true)
-    public void deleteAllCookies()
-    {
-        driver.manage().deleteAllCookies();
-    }
-
-    @AfterClass(alwaysRun = true)
     public void tearDown()
     {
         driver.quit();

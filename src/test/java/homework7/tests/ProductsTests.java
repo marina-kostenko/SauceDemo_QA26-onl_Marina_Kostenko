@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class ProductsTests extends BaseTest {
 
-    @Test(groups = "need account", dataProvider = "names of items", description = "this test checks item's information and adding item to shopping cart")
+    @Test(groups = {"need account", "regression"}, dataProvider = "names of items", description = "this test checks item's information and adding item to shopping cart")
     public void findAllItemsCheckInformationAndAddToCart(String productName, String productPrice, String productDescription)
     {
         Assert.assertEquals(productsPage.getProductPrice(productName), productPrice, "incorrect price for item");

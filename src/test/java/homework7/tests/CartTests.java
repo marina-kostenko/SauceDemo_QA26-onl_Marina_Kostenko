@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class CartTests extends BaseTest {
 
-    @Test(groups = "need account", description = "this test checks buttons Remove, Continue Shopping, Checkout  and item's information in the cart")
+    @Test(groups = {"need account", "smoke"}, description = "this test checks buttons Remove, Continue Shopping, Checkout  and item's information in the cart")
     public void buttonsAndProductInformationInCartTest()
     {
         String productName = "Sauce Labs Backpack";

@@ -1,4 +1,4 @@
-package homework7.tests;
+package homework7.utils;
 
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
