@@ -5,7 +5,7 @@ import org.testng.annotations.Test;
 
 public class ProductDetailsTests extends BaseTest {
 
-    @Test(groups = {"need account"}, description = "this test checks that item's price, name and description is correctly displayed on DetailsProduct's page")
+    @Test(groups = {"need account","regression"}, description = "this test checks that item's price, name and description is correctly displayed on DetailsProduct's page")
     public void productDetailsTest()
     {
         String productName = "Sauce Labs Fleece Jacket";

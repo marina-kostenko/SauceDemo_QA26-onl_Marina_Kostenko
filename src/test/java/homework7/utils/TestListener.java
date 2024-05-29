@@ -1,4 +1,4 @@
-package homework7.tests;
+package homework7.utils;
 
 import org.testng.ITestListener;
 import org.testng.ITestResult;
