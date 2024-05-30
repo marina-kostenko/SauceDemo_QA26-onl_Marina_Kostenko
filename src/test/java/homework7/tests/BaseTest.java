@@ -2,12 +2,15 @@ package homework7.tests;
 
 import homework7.pages.*;
 import homework7.utils.DriverFactory;
+import homework7.utils.InvokedListener;
 import homework7.utils.TestListener;
 import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.*;
 
-@Listeners({TestListener.class})
+@Listeners({InvokedListener.class, TestListener.class})
 public class BaseTest {
+
     protected WebDriver driver;
     protected LoginPage loginPage;
     protected ProductsPage productsPage;
@@ -19,9 +22,10 @@ public class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     @Parameters({"browserName"})
-    public void setUp(@Optional("chrome") String browser) throws Exception
+    public void setUp(@Optional("chrome") String browser, ITestContext testContext) throws Exception
     {
         driver = DriverFactory.getDriver(browser);
+        testContext.setAttribute("driver", driver);
         driver.get("https://www.saucedemo.com/");
         this.loginPage = new LoginPage(driver);
         this.productsPage = new ProductsPage(driver);
@@ -32,7 +36,7 @@ public class BaseTest {
         this.productDetailsPage = new ProductDetailsPage(driver);
     }
 
-    @BeforeMethod(alwaysRun = true, onlyForGroups = {"need account"}, dependsOnMethods= "setUp")
+    @BeforeMethod(alwaysRun = true, onlyForGroups = {"need account"}, dependsOnMethods = "setUp")
     public void setAccount()
     {
         loginPage.login("standard_user", "secret_sauce");

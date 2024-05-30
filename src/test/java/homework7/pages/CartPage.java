@@ -1,5 +1,6 @@
 package homework7.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -21,32 +22,37 @@ public class CartPage extends BasePage {
         super(driver);
     }
 
+    @Step("Get card for'{productName}' in cart")
     private WebElement getProductCardInCartByName(String productName)
     {
         return driver.findElement(By.xpath(String.format(ITEM_CONTAINER_IN_CART, productName)));
     }
 
+    @Step("Get quantity for'{productName}' in cart")
     public String getProductQuantityInCart(String productName)
     {
         return this.getProductCardInCartByName(productName).findElement(ITEM_QUANTITY_IN_CART).getText();
     }
 
+    @Step("Get price for'{productName}' in cart")
     public String getProductPriceInCart(String productName)
     {
         return this.getProductCardInCartByName(productName).findElement(ITEM_PRICE_IN_CART).getText();
     }
 
+    @Step("Get description for'{productName}' in cart")
     public String getProductDescriptionInCart(String productName)
     {
         return this.getProductCardInCartByName(productName).findElement(ITEM_DESCRIPTION_IN_CART).getText();
     }
 
-
+    @Step("Click button 'Continue Shopping'")
     public void clickContinueShoppingButton()
     {
         driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
     }
 
+    @Step("Click button 'Remove'")
     public void clickRemoveButton(String productName)
     {
         this.getProductCardInCartByName(productName).findElement(REMOVE_BUTTON).click();
@@ -62,6 +68,7 @@ public class CartPage extends BasePage {
         }
     }
 
+    @Step("Click button 'Checkout'")
     public void clickCheckoutButton()
     {
         driver.findElement(CHECKOUT_BUTTON).click();

@@ -1,11 +1,13 @@
 package homework7.tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CartTests extends BaseTest {
 
-    @Test(groups = {"need account", "smoke"}, description = "this test checks buttons Remove, Continue Shopping, Checkout  and item's information in the cart")
+   @Test(groups = {"need account", "smoke"}, description = "Buttons and product information in cart test")
+   @Description("this test checks buttons Remove, Continue Shopping, Checkout  and item's information in the cart")
     public void buttonsAndProductInformationInCartTest()
     {
         String productName = "Sauce Labs Backpack";

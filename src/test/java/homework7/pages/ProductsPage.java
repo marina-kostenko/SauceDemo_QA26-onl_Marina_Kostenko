@@ -1,5 +1,6 @@
 package homework7.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -31,6 +32,7 @@ public class ProductsPage extends BasePage {
         }
     }
 
+    @Step("Click button 'Add To Cart'")
     public void clickAddToCartButton(String productName)
     {
         this.getProductCardByName(productName).findElement(ADD_TO_CART_BUTTON).click();
@@ -41,22 +43,25 @@ public class ProductsPage extends BasePage {
         return driver.findElement(REMOVE_BUTTON).isDisplayed();
     }
 
-
+    @Step("Click name of '{productName}'")
     public void clickItemName(String productName)
     {
         this.getProductCardByName(productName).findElement(ITEM_NAME).click();
     }
 
+    @Step("Click button 'Shopping Cart'")
     public void clickShoppingCartButton()
     {
         driver.findElement(SHOPPING_CART).click();
     }
 
+    @Step("Get price for '{productName}'")
     public String getProductPrice(String productName)
     {
         return this.getProductCardByName(productName).findElement(ITEM_PRICE).getText();
     }
 
+    @Step("Get description for '{productName}'")
     public String getProductDescription(String productName)
     {
         return this.getProductCardByName(productName).findElement(ITEM_DESCRIPTION).getText();
