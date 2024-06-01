@@ -1,5 +1,6 @@
 package homework7.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -17,7 +18,7 @@ public class CheckoutCompletePage extends BasePage {
     {
         return driver.findElement(COMPLETE_ORDER_MESSAGE).isDisplayed();
     }
-
+    @Step("Click button 'Back Home'")
     public void clickBackHomeButton()
     {
         driver.findElement(BACK_HOME_BUTTON).click();

@@ -1,13 +1,15 @@
 package homework7.tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class ProductsTests extends BaseTest {
 
-    @Test(groups = {"need account", "regression"}, dataProvider = "names of items", description = "this test checks item's information and adding item to shopping cart")
-    public void findAllItemsCheckInformationAndAddToCart(String productName, String productPrice, String productDescription)
+    @Test(groups = {"need account", "regression"}, dataProvider = "names of items", description = "Find All Items Check Information And Add To Cart Test")
+    @Description("this test checks item's information and adding item to shopping cart")
+    public void findAllItemsCheckInformationAndAddToCartTest(String productName, String productPrice, String productDescription)
     {
         Assert.assertEquals(productsPage.getProductPrice(productName), productPrice, "incorrect price for item");
         Assert.assertEquals(productsPage.getProductDescription(productName), productDescription, "incorrect description for item");

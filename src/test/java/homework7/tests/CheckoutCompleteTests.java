@@ -1,10 +1,12 @@
 package homework7.tests;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CheckoutCompleteTests extends BaseTest {
-    @Test(groups = {"need account","regression"}, description = "this test checks successful making order and BackHome button on complete page")
+    @Test(groups = {"need account","regression"}, description = "Checkout Complete Test")
+    @Description("this test checks successful making order and BackHome button on complete page")
     public void checkoutCompleteTest()
     {
         String productName = "Sauce Labs Backpack";
