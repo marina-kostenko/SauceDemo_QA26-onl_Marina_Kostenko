@@ -1,14 +1,17 @@
 package homework7.pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class CheckoutOverviewPage extends BasePage {
-
-    private final static By PAGE_TITLE = By.xpath("//span[text()='Checkout: Overview']");
-    private final static By FINISH_BUTTON = By.name("finish");
-    private final static By CANCEL_BUTTON = By.name("cancel");
+    @FindBy(xpath = "//span[text()='Checkout: Overview']")
+    private WebElement pageTitle;
+    @FindBy(name = "finish")
+    private WebElement finishButton;
+    @FindBy(name = "cancel")
+    private WebElement cancelButton;
 
     public CheckoutOverviewPage(WebDriver driver)
     {
@@ -17,16 +20,20 @@ public class CheckoutOverviewPage extends BasePage {
 
     public boolean isPageTitleDisplayed()
     {
-        return driver.findElement(PAGE_TITLE).isDisplayed();
+        return pageTitle.isDisplayed();
     }
+
     @Step("Click button 'Finish'")
-    public void clickFinishButton()
+    public CheckoutCompletePage clickFinishButton()
     {
-        driver.findElement(FINISH_BUTTON).click();
+        finishButton.click();
+        return new CheckoutCompletePage(driver);
     }
+
     @Step("Click button 'Cancel'")
-    public void clickCancelButton()
+    public ProductsPage clickCancelButton()
     {
-        driver.findElement(CANCEL_BUTTON).click();
+        cancelButton.click();
+        return new ProductsPage(driver);
     }
 }

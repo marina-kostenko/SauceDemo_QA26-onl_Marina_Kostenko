@@ -6,19 +6,20 @@ import org.testng.annotations.Test;
 
 public class CheckOverviewTests extends BaseTest {
 
-    @Test(groups = {"need account","regression"}, description = "Canceling Order Test")
+    @Test(groups = {"need account", "regression"}, description = "Canceling Order Test")
     @Description("this test checks opportunity of canceling order")
     public void cancelingOrderTest()
     {
         String productName = "Sauce Labs Backpack";
-        productsPage.clickAddToCartButton(productName);
-        productsPage.clickShoppingCartButton();
-        cartPage.clickCheckoutButton();
-        checkoutYourInformationPage.setFirstNameField("Ivan");
-        checkoutYourInformationPage.setLastNameField("Ivanov");
-        checkoutYourInformationPage.setZipPostalCodeField("1234");
-        checkoutYourInformationPage.clickContinueButton();
-        checkoutOverviewPage.clickCancelButton();
-        Assert.assertTrue(productsPage.isSortContainerPresent());
+        boolean isSortContainerPresent = productsPage.clickAddToCartButton(productName)
+                .clickShoppingCartButton()
+                .clickCheckoutButton()
+                .setFirstNameField("Ivan")
+                .setLastNameField("Ivanov")
+                .setZipPostalCodeField("1234")
+                .clickContinueButton()
+                .clickCancelButton()
+                .isSortContainerPresent();
+        Assert.assertTrue(isSortContainerPresent);
     }
 }
