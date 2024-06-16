@@ -6,19 +6,19 @@ import org.testng.annotations.Test;
 
 public class CartTests extends BaseTest {
 
-   @Test(groups = {"need account", "smoke"}, description = "Buttons and product information in cart test")
-   @Description("this test checks buttons Remove, Continue Shopping, Checkout  and item's information in the cart")
+    @Test(groups = {"need account", "smoke"}, description = "Buttons and product information in cart test")
+    @Description("this test checks buttons Remove, Continue Shopping, Checkout  and item's information in the cart")
     public void buttonsAndProductInformationInCartTest()
     {
         String productName = "Sauce Labs Backpack";
-        productsPage.clickAddToCartButton(productName);
-        productsPage.clickShoppingCartButton();
-        cartPage.clickRemoveButton(productName);
+        productsPage.clickAddToCartButton(productName)
+                .clickShoppingCartButton()
+                .clickRemoveButton(productName);
         Assert.assertFalse(cartPage.isRemoveButtonDisplayed(productName), "remove button doesn't work");
         cartPage.clickContinueShoppingButton();
         Assert.assertTrue(productsPage.isSortContainerPresent(), "continue shopping button doesn't work");
-        productsPage.clickAddToCartButton(productName);
-        productsPage.clickShoppingCartButton();
+        productsPage.clickAddToCartButton(productName)
+                .clickShoppingCartButton();
         Assert.assertEquals(cartPage.getProductPriceInCart(productName), "$29.99", "price is incorrect");
         Assert.assertEquals(cartPage.getProductQuantityInCart(productName), "1", "quantity is incorrect");
         Assert.assertEquals(cartPage.getProductDescriptionInCart(productName), "carry.allTheThings() with the sleek, streamlined Sly Pack that melds uncompromising style with unequaled laptop and tablet protection.", "description is incorrect");

@@ -1,15 +1,20 @@
 package homework7.pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class CheckoutYourInformationPage extends BasePage {
 
-    private final static By FIRST_NAME_FIELD = By.id("first-name");
-    private final static By LAST_NAME_FIELD = By.id("last-name");
-    private final static By ZIP_POSTAL_CODE_FIELD = By.id("postal-code");
-    private final static By CONTINUE_BUTTON = By.id("continue");
+    @FindBy(id = "first-name")
+    private WebElement firstNameField;
+    @FindBy(id = "last-name")
+    private WebElement lastNameField;
+    @FindBy(id = "postal-code")
+    private WebElement zipPostalCodeField;
+    @FindBy(id = "continue")
+    private WebElement continueButton;
 
     public CheckoutYourInformationPage(WebDriver driver)
     {
@@ -18,30 +23,34 @@ public class CheckoutYourInformationPage extends BasePage {
 
     public boolean isFirstNameFieldDisplayed()
     {
-        return driver.findElement(FIRST_NAME_FIELD).isDisplayed();
+        return firstNameField.isDisplayed();
     }
 
     @Step("Set '{firstName}'")
-    public void setFirstNameField(String firstName)
+    public CheckoutYourInformationPage setFirstNameField(String firstName)
     {
-        driver.findElement(FIRST_NAME_FIELD).sendKeys(firstName);
+        firstNameField.sendKeys(firstName);
+        return this;
     }
 
     @Step("Set '{lastName}'")
-    public void setLastNameField(String lastName)
+    public CheckoutYourInformationPage setLastNameField(String lastName)
     {
-        driver.findElement(LAST_NAME_FIELD).sendKeys(lastName);
+        lastNameField.sendKeys(lastName);
+        return this;
     }
 
     @Step("Set '{zipPostalCodeField}'")
-    public void setZipPostalCodeField(String zipPostalCodeField)
+    public CheckoutYourInformationPage setZipPostalCodeField(String zipPostalCodeField)
     {
-        driver.findElement(ZIP_POSTAL_CODE_FIELD).sendKeys(zipPostalCodeField);
+        this.zipPostalCodeField.sendKeys(zipPostalCodeField);
+        return this;
     }
 
     @Step("Click button 'Continue'")
-    public void clickContinueButton()
+    public CheckoutOverviewPage clickContinueButton()
     {
-        driver.findElement(CONTINUE_BUTTON).click();
+        continueButton.click();
+        return new CheckoutOverviewPage(driver);
     }
 }

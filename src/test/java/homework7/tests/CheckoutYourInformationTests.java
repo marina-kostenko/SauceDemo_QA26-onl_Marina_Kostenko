@@ -11,13 +11,14 @@ public class CheckoutYourInformationTests extends BaseTest {
     public void fillingCheckoutInformationTest()
     {
         String productName = "Sauce Labs Backpack";
-        productsPage.clickAddToCartButton(productName);
-        productsPage.clickShoppingCartButton();
-        cartPage.clickCheckoutButton();
-        checkoutYourInformationPage.setFirstNameField("Ivan");
-        checkoutYourInformationPage.setLastNameField("Ivanov");
-        checkoutYourInformationPage.setZipPostalCodeField("1234");
-        checkoutYourInformationPage.clickContinueButton();
-        Assert.assertTrue(checkoutOverviewPage.isPageTitleDisplayed());
+        boolean isPageTitleDisplayed = productsPage.clickAddToCartButton(productName)
+                .clickShoppingCartButton()
+                .clickCheckoutButton()
+                .setFirstNameField("Ivan")
+                .setLastNameField("Ivanov")
+                .setZipPostalCodeField("1234")
+                .clickContinueButton()
+                .isPageTitleDisplayed();
+        Assert.assertTrue(isPageTitleDisplayed);
     }
 }

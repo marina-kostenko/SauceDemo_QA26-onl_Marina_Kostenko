@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 
 public class CartPage extends BasePage {
@@ -13,9 +14,13 @@ public class CartPage extends BasePage {
     private final static By ITEM_QUANTITY_IN_CART = By.className("cart_quantity");
     private final static By ITEM_PRICE_IN_CART = By.className("inventory_item_price");
     private final static By ITEM_DESCRIPTION_IN_CART = By.className("inventory_item_desc");
-    private final static By CONTINUE_SHOPPING_BUTTON = By.id("continue-shopping");
     private final static By REMOVE_BUTTON = By.cssSelector("button[id^='remove']");
-    private final static By CHECKOUT_BUTTON = By.id("checkout");
+
+    @FindBy(id = "continue-shopping")
+    private WebElement continueShoppingButton;
+
+    @FindBy(id = "checkout")
+    private WebElement checkoutButton;
 
     public CartPage(WebDriver driver)
     {
@@ -47,15 +52,17 @@ public class CartPage extends BasePage {
     }
 
     @Step("Click button 'Continue Shopping'")
-    public void clickContinueShoppingButton()
+    public ProductsPage clickContinueShoppingButton()
     {
-        driver.findElement(CONTINUE_SHOPPING_BUTTON).click();
+        continueShoppingButton.click();
+        return new ProductsPage(driver);
     }
 
     @Step("Click button 'Remove'")
-    public void clickRemoveButton(String productName)
+    public CartPage clickRemoveButton(String productName)
     {
         this.getProductCardInCartByName(productName).findElement(REMOVE_BUTTON).click();
+        return this;
     }
 
     public boolean isRemoveButtonDisplayed(String productName)
@@ -69,8 +76,9 @@ public class CartPage extends BasePage {
     }
 
     @Step("Click button 'Checkout'")
-    public void clickCheckoutButton()
+    public CheckoutYourInformationPage clickCheckoutButton()
     {
-        driver.findElement(CHECKOUT_BUTTON).click();
+        checkoutButton.click();
+        return new CheckoutYourInformationPage(driver);
     }
 }

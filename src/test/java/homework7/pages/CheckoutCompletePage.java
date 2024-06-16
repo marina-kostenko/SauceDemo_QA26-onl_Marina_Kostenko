@@ -1,13 +1,16 @@
 package homework7.pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class CheckoutCompletePage extends BasePage {
+    @FindBy(xpath = "//h2[text()='Thank you for your order!']")
+    private WebElement completeOrderMessage;
+    @FindBy(name = "back-to-products")
+    private WebElement backHomeButton;
 
-    private final static By COMPLETE_ORDER_MESSAGE = By.xpath("//h2[text()='Thank you for your order!']");
-    private final static By BACK_HOME_BUTTON = By.name("back-to-products");
 
     public CheckoutCompletePage(WebDriver driver)
     {
@@ -16,11 +19,13 @@ public class CheckoutCompletePage extends BasePage {
 
     public boolean isCompleteOrderMessageDisplayed()
     {
-        return driver.findElement(COMPLETE_ORDER_MESSAGE).isDisplayed();
+        return completeOrderMessage.isDisplayed();
     }
+
     @Step("Click button 'Back Home'")
-    public void clickBackHomeButton()
+    public ProductsPage clickBackHomeButton()
     {
-        driver.findElement(BACK_HOME_BUTTON).click();
+        backHomeButton.click();
+        return new ProductsPage(driver);
     }
 }
