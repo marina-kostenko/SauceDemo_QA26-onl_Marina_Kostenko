@@ -38,13 +38,18 @@ jobs:
       run: mvn -B clean test -Dbrowser=${{ inputs.browser }}
 
     - name: Generate Allure report
-      run: mvn allure:report
-
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      id: allure-report
+      with:
+        allure_results: target/allure-results
+        allure_report: target/allure-report
+        
     - name: Upload allure Report
       uses: actions/upload-artifact@v4
       with:
           name: allure-report
-          path: target\site\allure-maven-plugin
+          path: target/allure-report
 
 
 
