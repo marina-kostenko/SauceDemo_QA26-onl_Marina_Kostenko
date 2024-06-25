@@ -38,7 +38,7 @@ jobs:
       run: mvn -B clean test -Dbrowser=${{ inputs.browser }}
 
     - name: Generate Allure report
-      run: mvn allure report
+      run: mvn allure:generate
         
     - name: Upload allure Report
       uses: actions/upload-artifact@v4
