@@ -4,7 +4,7 @@ name: Selenium tests
 
 on:
   schedule:
-    - cron: "53 11 * * 2,4"
+    - cron: '00 06 * * 2,4'
   push:
     branches: [ "master" ]
   pull_request:
@@ -17,6 +17,7 @@ on:
         default: 'chrome'
         type: choice
         options:
+        - chrome
         - edge
         - safari
         - firefox
@@ -34,13 +35,13 @@ jobs:
         distribution: 'corretto'
         cache: maven
     - name: Run tests
-      run: mvn -B clean test -Dbrowser=${{ github.event.inputs.browser }}
+      run: mvn -B clean test -Dbrowser=${{ inputs.browser }}
 
     - name: Generate Allure report
       run: mvn allure:report
 
     - name: Upload allure Report
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
           name: allure-report
           path: target\site\allure-maven-plugin
