@@ -22,7 +22,7 @@ public class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     @Parameters({"browserName"})
-    @Step("Set '{browser}'")
+    @Step("Set '{browserName}'")
     public void setUp(@Optional("chrome") String browser, ITestContext testContext) throws Exception
     {
         driver = DriverFactory.getDriver(browser);
