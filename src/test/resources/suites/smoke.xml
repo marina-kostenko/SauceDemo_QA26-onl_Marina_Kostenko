@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Smoke Test" parallel="classes" thread-count="4">
-    <test name="Test on chrome">
-        <parameter name="browserName" value="chrome"></parameter>
-        <groups>
+<suite name="Smoke Test" parallel="tests" thread-count="2">
+    <test name="Smoke">
+               <groups>
             <run>
                 <include name="smoke"/>
             </run>
@@ -13,16 +12,5 @@
             <class name="homework7.tests.LoginTests"/>
         </classes>
     </test>
-    <test name="Test on Microsoft Edge">
-        <parameter name="browserName" value="edge"></parameter>
-        <groups>
-            <run>
-                <include name="smoke"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="homework7.tests.CheckoutYourInformationTests"/>
-            <class name="homework7.tests.LoginTests"/>
-        </classes>
-    </test>
+
 </suite>
