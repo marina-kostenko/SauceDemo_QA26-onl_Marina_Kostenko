@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.safari.SafariDriver;
 
 import java.time.Duration;
 
@@ -21,6 +22,9 @@ public class DriverFactory {
                 break;
             case "edge":
                 driver = new EdgeDriver();
+                break;
+            case "safari":
+                driver = new SafariDriver();
                 break;
             default:
                 throw new Exception("Unsupported browser");
