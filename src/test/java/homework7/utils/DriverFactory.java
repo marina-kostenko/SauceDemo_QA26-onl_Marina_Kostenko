@@ -7,10 +7,11 @@ import org.openqa.selenium.edge.EdgeDriver;
 import java.time.Duration;
 
 public class DriverFactory {
-    public static WebDriver getDriver(String browserName) throws Exception
+    public static WebDriver getDriver() throws Exception
     {
+        String browserName = System.getProperty("browser", "chrome");
         WebDriver driver;
-        switch (browserName) {
+        switch (browserName.toLowerCase()) {
             case "chrome":
                 driver = new ChromeDriver();
                 break;
