@@ -4,6 +4,7 @@ package homework7.utils;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.safari.SafariDriver;
@@ -20,7 +21,14 @@ public class DriverFactory {
         WebDriver driver;
         switch (browserName.toLowerCase()) {
             case "chrome":
-                driver = new ChromeDriver();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                if ("true".equals(headless)) {
+                    chromeOptions.addArguments("--headless");
+                    chromeOptions.addArguments("--disable-gpu");
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
+                }
+                driver = new ChromeDriver(chromeOptions);
                 break;
             case "edge":
                 EdgeOptions edgeOptions = new EdgeOptions();
