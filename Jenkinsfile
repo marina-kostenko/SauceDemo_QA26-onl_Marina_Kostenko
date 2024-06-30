@@ -4,11 +4,12 @@ pipeline {
     parameters {
         choice(name: 'BROWSER', choices: ['edge', 'chrome', 'safari'], description: 'Choose browser')
         choice(name: 'SUITE', choices: ['smoke', 'regression'], description: 'Choose type of suite')
+        booleanParam(name: 'HEADLESS', defaultValue: true, description: 'Run in headless mode')
     }
     triggers{
         parameterizedCron('''
-            00 09 * * 1,3,5 %SUITE=smoke;%BROWSER=chrome
-            00 23 1-31/2 * * %SUITE=regression;%BROWSER=${BROWSER}
+            00 09 * * 1,3,5 %SUITE=smoke;%BROWSER=chrome;%HEADLESS=true
+            00 23 1-31/2 * * %SUITE=regression;%BROWSER=${BROWSER};%HEADLESS=true
         ''')
     }
     tools {
@@ -19,7 +20,7 @@ pipeline {
         stage('Run tests') {
             steps {
                 git 'https://github.com/marina-kostenko/SauceDemo_QA26-onl_Marina_Kostenko.git'
-                bat "mvn -Dmaven.test.failure.ignore=true -DsuiteName=${params.SUITE} -Dbrowser=${params.BROWSER} clean test"
+                bat "mvn -Dmaven.test.failure.ignore=true -DsuiteName=${params.SUITE} -Dbrowser=${params.BROWSER} -Dheadless=${params.HEADLESS} clean test"
 
             }
 

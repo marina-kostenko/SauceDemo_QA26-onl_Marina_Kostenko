@@ -15,6 +15,7 @@ public class DriverFactory {
     public static WebDriver getDriver() throws Exception
     {
         String browserName = System.getProperty("browser", "chrome");
+        String headless = System.getProperty("headless", "false");
         log.debug("Requested browser: {}", browserName);
         WebDriver driver;
         switch (browserName.toLowerCase()) {
@@ -22,12 +23,14 @@ public class DriverFactory {
                 driver = new ChromeDriver();
                 break;
             case "edge":
-                EdgeOptions options = new EdgeOptions();
-                options.addArguments("--headless");
-                options.addArguments("--disable-gpu");
-                options.addArguments("--no-sandbox");
-                options.addArguments("--disable-dev-shm-usage");
-                driver = new EdgeDriver(options);
+                EdgeOptions edgeOptions = new EdgeOptions();
+                if ("true".equals(headless)) {
+                    edgeOptions.addArguments("--headless");
+                    edgeOptions.addArguments("--disable-gpu");
+                    edgeOptions.addArguments("--no-sandbox");
+                    edgeOptions.addArguments("--disable-dev-shm-usage");
+                }
+                driver = new EdgeDriver(edgeOptions);
                 break;
             case "safari":
                 driver = new SafariDriver();
