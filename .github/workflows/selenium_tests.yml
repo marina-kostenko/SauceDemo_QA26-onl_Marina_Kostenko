@@ -4,7 +4,7 @@ name: Selenium tests
 
 on:
   schedule:
-    - cron: '51 13 * * *'
+    - cron: '56 13 * * *'
   push:
     branches: [ "master" ]
   pull_request:
